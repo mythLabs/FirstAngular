@@ -1,0 +1,51 @@
+<div style="text-align:center">
+    <p>Component Title</p> {{title}}
+    <button class="btn btn-primary btn-sm" (click)="onTitleChange('new title')">Change title</button>
+   
+    <div>
+     <input [type]="inputType" [(ngModel)]="binding" >
+    <button class="btn btn-primary btn-sm" (click)="switchInput($event)">switch input type</button>
+    </div>  
+    <div>
+        {{binding}}
+    </div>
+    <hr>
+    <hr>
+    <hr>
+   <hr>
+   <button (click)="displayFruitList()">Display data</button>
+    <ul *ngIf="isFruitListDisplayed">
+        <li *ngFor='let fruit of fruits;let i=index' >
+           {{i+1}}.{{fruit}}
+        </li>
+    </ul>
+    <hr>
+    <hr>
+    <hr>
+    <ul>
+        <li *ngFor='let server of servers;' [ngStyle]="{ 'color': setServerStatus(server.status)}">
+            <span>{{server.name}}</span>
+        </li>
+    </ul>
+    <hr>
+    <hr>
+    <hr>
+    <div class="row">
+    <div class="col-lg-6">
+        <ul>
+            <li *ngFor='let server of servers;' [ngClass]="setStyleClass(server.status)"  [ngSwitch]="server.status">
+                <span *ngSwitchCase="'online'">{{server.name}}</span>
+            </li>
+        </ul>
+    </div>
+    <div class="col-lg-6">
+        <ul>
+            <li *ngFor='let server of servers;'  [ngClass]="setStyleClass(server.status)"      [ngSwitch]="server.status">
+                <span *ngSwitchCase="'offline'">{{server.name}}</span>
+            </li>
+        </ul>
+   </div>
+    </div>
+    
+
+</div>
